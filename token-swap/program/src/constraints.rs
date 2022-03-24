@@ -10,9 +10,6 @@ use crate::{
 
 use solana_program::program_error::ProgramError;
 
-#[cfg(feature = "production")]
-use std::env;
-
 /// Encodes fee constraints, used in multihost environments where the program
 /// may be used by multiple frontends, to ensure that proper fees are being
 /// assessed.
@@ -60,9 +57,9 @@ impl<'a> SwapConstraints<'a> {
     }
 }
 
-#[cfg(feature = "production")]
-const OWNER_KEY: &str = env!("SWAP_PROGRAM_OWNER_FEE_ADDRESS");
-#[cfg(feature = "production")]
+#[cfg(not(feature = "dev"))]
+const OWNER_KEY: &str = "3M1gJoNCxuw6GBMRatHzCvxwbQMiUZ6VoG22UCjubQZq";
+#[cfg(not(feature = "dev"))]
 const FEES: &Fees = &Fees {
     trade_fee_numerator: 0,
     trade_fee_denominator: 10000,
@@ -73,7 +70,7 @@ const FEES: &Fees = &Fees {
     host_fee_numerator: 20,
     host_fee_denominator: 100,
 };
-#[cfg(feature = "production")]
+#[cfg(not(feature = "dev"))]
 const VALID_CURVE_TYPES: &[CurveType] = &[CurveType::ConstantPrice, CurveType::ConstantProduct];
 
 /// Fee structure defined by program creator in order to enforce certain
@@ -83,7 +80,7 @@ const VALID_CURVE_TYPES: &[CurveType] = &[CurveType::ConstantPrice, CurveType::C
 /// fees that creator of the pool can specify. Host fee is a fixed
 /// percentage that host receives as a portion of owner fees
 pub const SWAP_CONSTRAINTS: Option<SwapConstraints> = {
-    #[cfg(feature = "production")]
+    #[cfg(not(feature = "dev"))]
     {
         Some(SwapConstraints {
             owner_key: OWNER_KEY,
@@ -91,7 +88,7 @@ pub const SWAP_CONSTRAINTS: Option<SwapConstraints> = {
             fees: FEES,
         })
     }
-    #[cfg(not(feature = "production"))]
+    #[cfg(feature = "dev")]
     {
         None
     }
