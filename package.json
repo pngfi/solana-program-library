@@ -1,0 +1,17 @@
+{
+  "name": "png-solana-program-library",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pngfi/solana-program-library.git",
+  "author": "",
+  "license": "Apache License 2.0",
+  "scripts": {
+    "buildVerifiable": "anchor build --verifiable -p spl_token_swap",
+    "verifyBuffer": "anchor verify --provider.cluster mainnet -p spl_token_swap 427VgnGg2oNSaPaDpjnQbfzcNnWxouvonayUKW8uaudm ",
+    "verifyProgram": "anchor verify --provider.cluster mainnet -p spl_token_swap PSwapMdSai8tjrEXcxFeQth87xC4rRsa4VA5mhGhXkP",
+    "anchorPublish": "anchor publish --provider.cluster mainnet spl_token_swap"
+  },
+  "devDependencies": {
+    "@project-serum/anchor-cli": "0.20.1"
+  }
+}
