@@ -1,0 +1,17 @@
+{
+  "name": "png-solana-program-library",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pngfi/solana-program-library.git",
+  "author": "",
+  "license": "Apache License 2.0",
+  "scripts": {
+    "buildVerifiable": "./node_modules/.bin/anchor build --docker-image projectserum/build:v0.20.1 --verifiable --program-name spl_token_swap",
+    "verifyBuffer": "cd token-swap && ../node_modules/.bin/anchor verify --provider.cluster mainnet --docker-image projectserum/build:v0.20.1 -p spl_token_swap 427VgnGg2oNSaPaDpjnQbfzcNnWxouvonayUKW8uaudm ",
+    "verifyProgram": "cd token-swap && ../node_modules/.bin/anchor verify --provider.cluster mainnet --docker-image projectserum/build:v0.20.1 -p spl_token_swap PSwapMdSai8tjrEXcxFeQth87xC4rRsa4VA5mhGhXkP",
+    "anchorPublish": "cd token-swap && ../node_modules/.bin/anchor publish --provider.cluster mainnet --docker-image projectserum/build:v0.20.1 spl_token_swap"
+  },
+  "devDependencies": {
+    "@project-serum/anchor-cli": "0.20.1"
+  }
+}

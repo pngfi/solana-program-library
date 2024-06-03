@@ -9,7 +9,7 @@ edition = "2018"
 
 [features]
 no-entrypoint = []
-production = []
+dev = []                      #default production feature
 fuzz = ["arbitrary", "roots"]
 
 [dependencies]
